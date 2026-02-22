@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register Fingerprint</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 650px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f4f6f8;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        nav a {
+            margin: 0 12px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        form {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 20px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #155724;
+            background: #d4edda;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        img {
+            display: block;
+            margin: 20px auto 0;
+            max-width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 25px;
+            text-align: center;
+            font-weight: bold;
+            color: #007bff;
+            font-size: 16px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📝 Register Fingerprint</h1>
+
+    <nav>
+        <a href="/">🏠 Home</a>
+        <a href="/capture">📸 Mark Attendance</a>
+        <a href="/attendance">📋 View Attendance</a>
+    </nav>
+
+    <form action="/register" method="POST" enctype="multipart/form-data">
+        <label for="student_name">👤 Student Name:</label>
+        <input type="text" name="student_name" id="student_name" placeholder="Enter full name" required>
+
+        <label for="fingerprint">📁 Upload Fingerprint Image:</label>
+        <input type="file" name="fingerprint" id="fingerprint" accept="image/*" required>
+
+        <button type="submit">📌 Register</button>
+    </form>
+
+    {% if message %}
+        <div class="message {{ 'error' if 'failed' in message else '' }}">{{ message }}</div>
+    {% endif %}
+
+    {% if captured_image %}
+        <img src="{{ captured_image }}" alt="Registered Fingerprint">
+    {% endif %}
+
+    <a href="/" class="back-link">⬅️ Back to Home</a>
+
+</body>
+</html>

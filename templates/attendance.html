@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+            background-color: #f4f6f8;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 16px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e6f9e6;
+        }
+
+        .no-records {
+            text-align: center;
+            font-size: 18px;
+            color: #777;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+            color: #007bff;
+            font-size: 16px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>📅 Attendance Records</h1>
+
+    <nav>
+        <a href="/">🏠 Home</a>
+        <a href="/register">📝 Register</a>
+        <a href="/capture">📸 Mark Attendance</a>
+    </nav>
+
+    {% if records %}
+        <table>
+            <thead>
+                <tr>
+                    <th>👤 Name</th>
+                    <th>⏰ Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                    <tr>
+                        <td>{{ record[0] }}</td>
+                        <td>{{ record[1] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="no-records">🚫 No attendance records found.</div>
+    {% endif %}
+
+    <a href="/" class="back-link">⬅️ Back to Home</a>
+
+</body>
+</html>
